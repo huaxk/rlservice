@@ -1,0 +1,28 @@
+env: dev
+
+dev:
+  adapter: PostgreSQL
+  database: gis
+  host: localhost
+  username: gis
+  password: gispass
+  # port:
+  # config:
+
+prod:
+  adapter:
+  database:
+  host:
+  username:
+  password:
+  port:
+  config:
+
+test:
+  adapter:
+  database:
+  host:
+  username:
+  password:
+  port:
+  config: 
