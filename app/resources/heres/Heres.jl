@@ -12,6 +12,8 @@ mutable struct Here <: AbstractModel
 
   ### FIELDS
   id::DbId
+  name::String
+  lnglat::String
 
   ### VALIDATION
   # validator::ModelValidator
@@ -30,6 +32,8 @@ mutable struct Here <: AbstractModel
   Here(;
     ### FIELDS
     id = DbId(),
+    name = "",
+    lnglat = ""
 
     ### VALIDATION
     # validator = ModelValidator([
@@ -57,7 +61,7 @@ mutable struct Here <: AbstractModel
     # scopes = Dict{Symbol,Vector{SearchLight.SQLWhereEntity}}()
 
   ) = new("heres", "id", Symbol[],                                                ### INTERNALS
-          id,                                                                           ### FIELDS
+          id, name, lnglat                                                        ### FIELDS
           # validator,                                                                  ### VALIDATION
           # before_save, after_save, on_save, on_find, after_find                       ### CALLBACKS
           # scopes                                                                      ### SCOPES

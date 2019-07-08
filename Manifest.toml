@@ -76,9 +76,9 @@ version = "1.0.0"
 
 [[DataValues]]
 deps = ["DataValueInterfaces", "Dates"]
-git-tree-sha1 = "b23285b1ebe5c9febc8a2146395f4177c1282a39"
+git-tree-sha1 = "34e6d8205cf46dbdd0485f970c8590f63243ac30"
 uuid = "e7dc6d0d-1eca-5fa6-8ad6-5aecde8b7ea5"
-version = "0.4.9"
+version = "0.4.10"
 
 [[Dates]]
 deps = ["Printf"]

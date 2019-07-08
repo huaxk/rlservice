@@ -29,7 +29,7 @@ function create()
     SearchLight.query("insert into heres (name, lnglat) values (
         '$name',
         ST_SetSRID(ST_GeomFromGeoJSON('$lnglat'), 4326)
-    )")
+    ) RETURNING id")[1][1]
 end
 
 function delete()
