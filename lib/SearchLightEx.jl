@@ -1,9 +1,31 @@
 # module SearchLightEx
 
 using SearchLight
+# import SearchLight.SQLColumn
 
 # import SearchLight.Database.prepare_column_name
 
+struct SQLFn <: SQLType
+    name::Symbol
+    fields::Tuple
+end
+
+# Base.string(io::IO, s::SQLFn) = """$(s.name)($(s.fields[1]))"""
+Base.print(io::IO, s::SQLFn) = print(io, string(s))
+Base.string(s::SQLFn) = """$(s.name)($(join(s.fields, ",")))"""
+
+struct SQLFunctionName <: SQLType
+    name::Symbol
+end
+(f::SQLFunctionName)(args...) = SQLFn(f.name, args)
+
+function sql_functions(s)
+    :(($(s...),) = $(map(x->SQLFunctionName(x), s)))
+end
+
+macro sql_functions(args...)
+    esc(sql_functions(args))
+end
 
 struct SQLFunction <: SQLType
     value::String
@@ -13,7 +35,7 @@ macro sqlfn_str(f)
     SQLFunction(f)
 end
 
-SQLColumn(f::SQLFunction) = SQLColumn(f.value)
+SearchLight.SQLColumn(f::SQLFunction) = SQLColumn(f.value)
 Base.convert(::Type{SQLColumn}, f::SQLFunction) = SQLColumn(f)
 
 # Base.convert(::Type{SQLColumn}, r::SQLRaw) = SQLColumn(r.value, raw=true)
